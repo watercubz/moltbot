@@ -102,16 +102,23 @@ if (!runner) {
   process.exit(1);
 }
 
-const script =
-  action === "install"
-    ? null
-    : action === "dev"
-      ? "dev"
-      : action === "build"
-        ? "build"
-        : action === "test"
-          ? "test"
-          : null;
+const script = null
+
+switch(action) {
+  case "install":
+    script = install
+    break;
+  case "dev": 
+    script = "dev"
+    break;
+  case "build":
+    script = "build"
+    break;
+  case "test":
+    script = "test"
+  default:
+    script = null
+}
 
 if (action !== "install" && !script) {
   usage();
